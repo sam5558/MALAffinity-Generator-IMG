@@ -99,14 +99,6 @@ print(newresult)
 # print(tabulate([v for v in newresult.items()], headers=["Friend", "Affinity"]))
 #print(type(result))
 
-
-newresult = OrderedDict(sorted(results.items(), key=lambda t: t[1], reverse=True))
-
-#for key in range(11,len(ufriends["friends"])):
-#    del newresult[key]
-print(newresult)
-# print(tabulate([v for v in newresult.items()], headers=["Friend", "Affinity"]))
-#print(type(result))
 # create Image object with the input image
 image = Image.open('top-friends.png').convert('RGB')
 
@@ -130,7 +122,7 @@ draw.text((x, y), message, fill=color, font=font)
 
 (x, y) = (50, 850)
 lasttime = "last updated : " + dt_string
-color = 'rgb(143,188,143)'
+color = 'rgb(224,224,224)'
 draw.text((x, y), lasttime, fill=color, font=updatefont)
 
 # draw the message on the background
