@@ -54,7 +54,50 @@ results = {}
 # create a list of friend names
 friend_names = [f["username"] for f in ufriends["friends"]]
 
-newresult = OrderedDict([('LegendOrrin', 71.93), ('AbuelitaDeBatman', 66.29), ('LouysP', 64.02), ('PafDesChocapiks', 62.21), ('Japy', 60.24), ('KAIKI-DESU', 59.29), ('Hydroman_', 59.22), ('S-cryed', 58.88), ('Blastof_', 58.88), ('bshak', 58.21), ('Daante_', 57.79), ('Taikuhatsu', 56.7), ('Iiiik', 55.69), ('mcd_78', 55.41), ('Tenshibana', 54.86), ('Ruqaa', 54.54), ('KiSsxShoT', 54.51), ('HaarWyvern', 54.02), ('tristan-h', 52.99), ('anaesan', 52.53), ('Naou_', 51.78), ('Iwolf441', 51.58), ('21stCenturyBoy_', 51.25), ('Souba', 50.9), ('Faith_Navii', 50.64), ('K0NAMI', 50.29), ('Kreya29', 50.03), ('6lk6', 49.65), ('itsNotMark', 48.23), ('Sakutarou', 47.68), ('Loleyke', 47.55), ('Noodle_June', 47.06), ('TuyNOM', 46.96), ('YelloWCl3ar', 46.85), ('ImRenaud', 46.79), ('ezkeeks', 46.71), ('Davide_Chikone', 46.32), ('JojoYabuki', 46.25), ('DatRandomDude', 46.24), ('Anime-ETF', 46.11), ('HaremOverlord', 45.97), ('Afloo', 45.64), ('darkneff', 44.98), ('arthuurop', 44.68), ('Railingue', 44.33), ('DracGaki', 44.1), ('Zetsubo22', 43.19), ('KingDespe', 43.17), ('Laraxs', 42.95), ('GamesRet', 42.7), ('Azuki-ojou', 42.14), ('Vizioz', 41.78), ('BenjaminJunior', 41.4), ('paraparaship', 40.38), ('Mangamer', 40.14), ('FaliaS', 39.37), ('Kami_yar0', 39.07), ('Djidji', 38.86), ('Benku', 38.81), ('Aniki91', 38.65), ('-Nadrel-', 38.46), ('Shiratoria', 37.71), ('Charlotte1412', 37.62), ('Sifedo', 37.51), ('Azdo0m', 37.23), ('spacecowboy', 37.07), ('ProfZex', 36.99), ('FanTaine', 36.77), ('Sreyso', 34.88), ('Juliiiiiiiiiiius', 34.76), ('LupinYabuki', 33.78), ('Hydraxsfull', 33.65), ('Saeba_Ryou', 32.58), ('Jakedax', 32.19), ('BlackTeaLady', 31.9), ('pr4ty', 31.12), ('bAbyLoNE', 30.83), ('drakoneel', 29.83), ('infinico', 29.75), ('Matism', 29.19), ('rek94', 28.91), ('Laeweth', 28.52), ('Ha0', 28.14), ('Chifie', 27.15), ('Henatsuka', 25.29), ('cynic15m', 21.41), ('Apichua', 20.85), ('Ahmed_paint5', 20.09), ('Ragnos055', 17.88), ('Radukaii', 17.31), ('_r_Felipe', 15.19), ('ProxyLain', 14.77), ('TopherC17', 13.03), ('Korsa-', 12.23), ('QuentiNeicigam', 8.76)])
+while len(friend_names) > 0: # while the list isn't empty
+    friend = friend_names[0] # get the first name
+    print("Comparing {}'s list to {}...".format(username, friend))
+    try:
+        # calculate affinity
+        affinity, shared = af.calculate_affinity(friend, service="MyAnimeList")
+        # save the result
+        results[friend] = round(affinity, 2)
+        # remove that friend from the list
+        friend_names.remove(friend)
+    except RateLimitExceededError:
+        print("We exceeded the rate limit!")
+        # wait for a while and then try again
+        time.sleep(10)
+        continue
+    except NoAffinityError as ne:
+        print("{}".format(ne))
+        # ignore this user
+        friend_names.remove(friend)
+        continue
+    except InvalidUserError:
+        print("Couldnt download list for {}. This may be because their list is private.".format(friend))
+        # ignore this user
+        friend_names.remove(friend)
+        continue
+    except DecimalException:
+        # see here:
+        # https://github.com/erkghlerngm44/aniffinity/blob/master/aniffinity/calcs.py#L32
+        # this can happen when a user has no ratings or rates everything the same
+        print("Division by zero error while trying to process list for {}...".format(friend))
+        # ignore this user
+        friend_names.remove(friend)
+        continue
+    except Exception as e:
+        # exit on any other error
+        print("Exception for {}: `{}`".format(friend, e))
+        break
+
+newresult = OrderedDict(sorted(results.items(), key=lambda t: t[1], reverse=True))
+#for key in range(11,len(ufriends["friends"])):
+#    del newresult[key]
+print(newresult)
+# print(tabulate([v for v in newresult.items()], headers=["Friend", "Affinity"]))
+#print(type(result))
 
 # create Image object with the input image
 image = Image.open('top-friends.png').convert('RGB')
