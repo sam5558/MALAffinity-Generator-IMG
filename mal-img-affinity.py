@@ -98,6 +98,15 @@ newresult = OrderedDict(sorted(results.items(), key=lambda t: t[1], reverse=True
 print(newresult)
 # print(tabulate([v for v in newresult.items()], headers=["Friend", "Affinity"]))
 #print(type(result))
+
+
+newresult = OrderedDict(sorted(results.items(), key=lambda t: t[1], reverse=True))
+
+#for key in range(11,len(ufriends["friends"])):
+#    del newresult[key]
+print(newresult)
+# print(tabulate([v for v in newresult.items()], headers=["Friend", "Affinity"]))
+#print(type(result))
 # create Image object with the input image
 image = Image.open('top-friends.png').convert('RGB')
 
@@ -116,7 +125,7 @@ updatefont = ImageFont.truetype('Roboto-Bold.ttf', size=30)
 
 (x, y) = (50, 50)
 message = "TOP 10 MyAnimeList Friends !"
-color = 'rgb(0, 0, 153)' # black color
+color = 'rgb(47,82,162)' # black color
 draw.text((x, y), message, fill=color, font=font)
 
 (x, y) = (50, 850)
@@ -127,25 +136,25 @@ draw.text((x, y), lasttime, fill=color, font=updatefont)
 # draw the message on the background
 
 name0 = str([v for v in newresult.items()][0][0])
-val0 = str([v for v in newresult.items()][0][1])
+val0 = str([v for v in newresult.items()][0][1])+"%"
 name1 = str([v for v in newresult.items()][1][0])
-val1 = str([v for v in newresult.items()][1][1])
+val1 = str([v for v in newresult.items()][1][1])+"%"
 name2 = str([v for v in newresult.items()][2][0])
-val2 = str([v for v in newresult.items()][2][1])
+val2 = str([v for v in newresult.items()][2][1])+"%"
 name3 = str([v for v in newresult.items()][3][0])
-val3 = str([v for v in newresult.items()][3][1])
+val3 = str([v for v in newresult.items()][3][1])+"%"
 name4 = str([v for v in newresult.items()][4][0])
-val4 = str([v for v in newresult.items()][4][1])
+val4 = str([v for v in newresult.items()][4][1])+"%"
 name5 = str([v for v in newresult.items()][5][0])
-val5 = str([v for v in newresult.items()][5][1])
+val5 = str([v for v in newresult.items()][5][1])+"%"
 name6 = str([v for v in newresult.items()][6][0])
-val6 = str([v for v in newresult.items()][6][1])
+val6 = str([v for v in newresult.items()][6][1])+"%"
 name7 = str([v for v in newresult.items()][7][0])
-val7 = str([v for v in newresult.items()][7][1])
+val7 = str([v for v in newresult.items()][7][1])+"%"
 name8 = str([v for v in newresult.items()][8][0])
-val8 = str([v for v in newresult.items()][8][1])
+val8 = str([v for v in newresult.items()][8][1])+"%"
 name9 = str([v for v in newresult.items()][9][0])
-val9 = str([v for v in newresult.items()][9][1])
+val9 = str([v for v in newresult.items()][9][1])+"%"
 
 color = 'rgb(255, 255, 255)' # white color
 (x, y) = (150, 150)
