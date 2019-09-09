@@ -93,12 +93,11 @@ while len(friend_names) > 0: # while the list isn't empty
         break
 
 newresult = OrderedDict(sorted(results.items(), key=lambda t: t[1], reverse=True))
-for key in range(11,len(ufriends["friends"])):
-    del newresult[key]
+#for key in range(11,len(ufriends["friends"])):
+#    del newresult[key]
 print(newresult)
 # print(tabulate([v for v in newresult.items()], headers=["Friend", "Affinity"]))
 #print(type(result))
-
 # create Image object with the input image
 image = Image.open('top-friends.png').convert('RGB')
 
@@ -116,11 +115,11 @@ updatefont = ImageFont.truetype('Roboto-Bold.ttf', size=30)
 # starting position of the message
 
 (x, y) = (50, 50)
-message = "TOP MyAnimeList Friends !"
-color = 'rgb(0, 0, 0)' # black color
+message = "TOP 10 MyAnimeList Friends !"
+color = 'rgb(0, 0, 153)' # black color
 draw.text((x, y), message, fill=color, font=font)
 
-(x, y) = (1100, 50)
+(x, y) = (50, 850)
 lasttime = "last updated : " + dt_string
 color = 'rgb(143,188,143)'
 draw.text((x, y), lasttime, fill=color, font=updatefont)
@@ -128,11 +127,25 @@ draw.text((x, y), lasttime, fill=color, font=updatefont)
 # draw the message on the background
 
 name0 = str([v for v in newresult.items()][0][0])
-val1 = str([v for v in newresult.items()][0][1])
+val0 = str([v for v in newresult.items()][0][1])
 name1 = str([v for v in newresult.items()][1][0])
-val2 = str([v for v in newresult.items()][1][1])
+val1 = str([v for v in newresult.items()][1][1])
 name2 = str([v for v in newresult.items()][2][0])
-val3 = str([v for v in newresult.items()][2][1])
+val2 = str([v for v in newresult.items()][2][1])
+name3 = str([v for v in newresult.items()][3][0])
+val3 = str([v for v in newresult.items()][3][1])
+name4 = str([v for v in newresult.items()][4][0])
+val4 = str([v for v in newresult.items()][4][1])
+name5 = str([v for v in newresult.items()][5][0])
+val5 = str([v for v in newresult.items()][5][1])
+name6 = str([v for v in newresult.items()][6][0])
+val6 = str([v for v in newresult.items()][6][1])
+name7 = str([v for v in newresult.items()][7][0])
+val7 = str([v for v in newresult.items()][7][1])
+name8 = str([v for v in newresult.items()][8][0])
+val8 = str([v for v in newresult.items()][8][1])
+name9 = str([v for v in newresult.items()][9][0])
+val9 = str([v for v in newresult.items()][9][1])
 
 color = 'rgb(255, 255, 255)' # white color
 (x, y) = (150, 150)
@@ -141,13 +154,42 @@ draw.text((x, y), name0, fill=color, font=font)
 draw.text((x, y), name1, fill=color, font=font)
 (x, y) = (150, 250)
 draw.text((x, y), name2, fill=color, font=font)
+(x, y) = (150, 300)
+draw.text((x, y), name3, fill=color, font=font)
+(x, y) = (150, 350)
+draw.text((x, y), name4, fill=color, font=font)
+(x, y) = (150, 400)
+draw.text((x, y), name5, fill=color, font=font)
+(x, y) = (150, 450)
+draw.text((x, y), name6, fill=color, font=font)
+(x, y) = (150, 500)
+draw.text((x, y), name7, fill=color, font=font)
+(x, y) = (150, 550)
+draw.text((x, y), name8, fill=color, font=font)
+(x, y) = (150, 600)
+draw.text((x, y), name9, fill=color, font=font)
 (x, y) = (800, 150)
-draw.text((x, y), val1, fill=color, font=font)
+draw.text((x, y), val0, fill=color, font=font)
 (x, y) = (800, 200)
-draw.text((x, y), val2, fill=color, font=font)
+draw.text((x, y), val1, fill=color, font=font)
 (x, y) = (800, 250)
+draw.text((x, y), val2, fill=color, font=font)
+(x, y) = (800, 300)
 draw.text((x, y), val3, fill=color, font=font)
+(x, y) = (800, 350)
+draw.text((x, y), val4, fill=color, font=font)
+(x, y) = (800, 400)
+draw.text((x, y), val5, fill=color, font=font)
+(x, y) = (800, 450)
+draw.text((x, y), val6, fill=color, font=font)
+(x, y) = (800, 500)
+draw.text((x, y), val7, fill=color, font=font)
+(x, y) = (800, 550)
+draw.text((x, y), val8, fill=color, font=font)
+(x, y) = (800, 600)
+draw.text((x, y), val9, fill=color, font=font)
+
 
 # save the edited image
 
-image.save('new-top-friends.png')
+image.save('top-10-friends.png')
