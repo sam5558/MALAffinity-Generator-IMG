@@ -122,7 +122,7 @@ draw.text((x, y), message, fill=color, font=font)
 
 (x, y) = (50, 850)
 lasttime = "last updated : " + dt_string
-color = 'rgb(224,224,224)'
+color = 'rgb(177,116,104)'
 draw.text((x, y), lasttime, fill=color, font=updatefont)
 
 # draw the message on the background
@@ -148,7 +148,7 @@ val8 = str([v for v in newresult.items()][8][1])+"%"
 name9 = str([v for v in newresult.items()][9][0])
 val9 = str([v for v in newresult.items()][9][1])+"%"
 
-color = 'rgb(255, 255, 255)' # white color
+color = 'rgb(159, 99, 63)' # white color
 (x, y) = (150, 150)
 draw.text((x, y), name0, fill=color, font=font)
 (x, y) = (150, 200)
