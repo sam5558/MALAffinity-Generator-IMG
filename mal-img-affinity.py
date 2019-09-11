@@ -100,7 +100,7 @@ print(newresult)
 #print(type(result))
 
 # create Image object with the input image
-image = Image.open('top-friends.png').convert('RGB')
+image = Image.open('top-friends.png').convert('RGBA')
 
 # initialise the drawing context with
 # the image object as background
