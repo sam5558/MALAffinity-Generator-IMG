@@ -54,47 +54,47 @@ results = {}
 # create a list of friend names
 friend_names = [f["username"] for f in ufriends["friends"]]
 
-#while len(friend_names) > 0: # while the list isn't empty
-#    friend = friend_names[0] # get the first name
-#    print("Comparing {}'s list to {}...".format(username, friend))
-#    try:
-#        # calculate affinity
-#        affinity, shared = af.calculate_affinity(friend, service="MyAnimeList")
-#        # save the result
-#        results[friend] = round(affinity, 2)
-#        # remove that friend from the list
-#        friend_names.remove(friend)
-#    except RateLimitExceededError:
-#        print("We exceeded the rate limit!")
-#        # wait for a while and then try again
-#        time.sleep(10)
-#        continue
-#    except NoAffinityError as ne:
-#        print("{}".format(ne))
-#        # ignore this user
-#        friend_names.remove(friend)
-#        continue
-#    except InvalidUserError:
-#        print("Couldnt download list for {}. This may be because their list is private.".format(friend))
-#        # ignore this user
-#        friend_names.remove(friend)
-#        continue
-#    except DecimalException:
-#        # see here:
-#        # https://github.com/erkghlerngm44/aniffinity/blob/master/aniffinity/calcs.py#L32
-#        # this can happen when a user has no ratings or rates everything the same
-#        print("Division by zero error while trying to process list for {}...".format(friend))
-#        # ignore this user
-#        friend_names.remove(friend)
-#        continue
-#    except Exception as e:
-#        # exit on any other error
-#        print("Exception for {}: `{}`".format(friend, e))
-#        break
+while len(friend_names) > 0: # while the list isn't empty
+    friend = friend_names[0] # get the first name
+    print("Comparing {}'s list to {}...".format(username, friend))
+    try:
+        # calculate affinity
+        affinity, shared = af.calculate_affinity(friend, service="MyAnimeList")
+        # save the result
+        results[friend] = round(affinity, 2)
+        # remove that friend from the list
+        friend_names.remove(friend)
+    except RateLimitExceededError:
+        print("We exceeded the rate limit!")
+        # wait for a while and then try again
+        time.sleep(10)
+        continue
+    except NoAffinityError as ne:
+        print("{}".format(ne))
+        # ignore this user
+        friend_names.remove(friend)
+        continue
+    except InvalidUserError:
+        print("Couldnt download list for {}. This may be because their list is private.".format(friend))
+        # ignore this user
+        friend_names.remove(friend)
+        continue
+    except DecimalException:
+        # see here:
+        # https://github.com/erkghlerngm44/aniffinity/blob/master/aniffinity/calcs.py#L32
+        # this can happen when a user has no ratings or rates everything the same
+        print("Division by zero error while trying to process list for {}...".format(friend))
+        # ignore this user
+        friend_names.remove(friend)
+        continue
+    except Exception as e:
+        # exit on any other error
+        print("Exception for {}: `{}`".format(friend, e))
+        break
 
-#newresult = OrderedDict(sorted(results.items(), key=lambda t: t[1], reverse=True))
+newresult = OrderedDict(sorted(results.items(), key=lambda t: t[1], reverse=True))
 # use the following line to have rapid result (comment line 57 to 95)
-newresult = OrderedDict([('LegendOrrin', 71.98), ('AbuelitaDeBatman', 64.43), ('LouysP', 63.81), ('bshak', 62.28), ('Hydroman_', 62.11), ('PafDesChocapiks', 62.03), ('Japy', 59.88), ('KAIKI-DESU', 59.15), ('Blastof_', 58.88), ('S-cryed', 57.86), ('Daante_', 57.62), ('Taikuhatsu', 56.31), ('mcd_78', 55.85), ('Iiiik', 53.66), ('Tenshibana', 53.46), ('anaesan', 53.21), ('HaarWyvern', 53.04), ('Ruqaa', 52.61), ('Wilump', 52.59), ('tristan-h', 51.59), ('Iwolf441', 51.58), ('Naou_', 51.56), ('Souba', 51.06), ('K0NAMI', 50.26), ('21stCenturyBoy_', 50.07), ('Kreya29', 49.93), ('6lk6', 49.65), ('Faith_Navii', 49.16), ('Sakutarou', 48.79), ('itsNotMark', 48.15), ('TuyNOM', 48.11), ('Loleyke', 47.55), ('ezkeeks', 46.93), ('KiSsxShoT', 46.8), ('Noodle_June', 46.69), ('YelloWCl3ar', 46.56), ('ImRenaud', 46.37), ('JojoYabuki', 46.06), ('DatRandomDude', 46.03), ('HaremOverlord', 46.0), ('Afloo', 45.59), ('arthuurop', 44.63), ('Anime-ETF', 44.3), ('darkneff', 44.09), ('DracGaki', 44.02), ('KingDespe', 43.31), ('Zetsubo22', 43.2), ('Laraxs', 42.72), ('GamesRet', 42.7), ('Azuki-ojou', 42.41), ('DesnomLumerian', 41.84), ('Vizioz', 41.46), ('ProfZex', 41.16), ('Hamou', 40.73), ('BenjaminJunior', 40.7), ('paraparaship', 40.51), ('Mangamer', 40.14), ('Kiszaw', 39.38), ('FaliaS', 39.23), ('Kami_yar0', 39.06), ('Benku', 39.06), ('Djidji', 39.03), ('Azdo0m', 39.02), ('Aniki91', 38.65), ('-Nadrel-', 38.46), ('Charlotte1412', 37.78), ('Shiratoria', 37.69), ('Sifedo', 37.51), ('spacecowboy', 36.81), ('FanTaine', 35.97), ('Sreyso', 34.99), ('bAbyLoNE', 34.9), ('LupinYabuki', 32.91), ('Hydraxsfull', 32.87), ('infinico', 32.82), ('Saeba_Ryou', 32.74), ('Jakedax', 32.19), ('BlackTeaLady', 31.87), ('pr4ty', 30.51), ('Matism', 30.0), ('Ha0', 28.8), ('Laeweth', 28.8), ('rek94', 28.37), ('Henatsuka', 24.18), ('firefoxy333', 22.18), ('Apichua', 21.36), ('cynic15m', 20.89), ('Ahmed_paint5', 19.17), ('Radukaii', 17.47), ('Ragnos055', 17.22), ('_r_Felipe', 17.06), ('Chifie', 17.04), ('ProxyLain', 14.98), ('Korsa-', 12.53), ('TopherC17', 11.65), ('QuentiNeicigam', 8.63), ('Lolmortlilol', -3.21)])
+#newresult = ...
 
 #for key in range(11,len(ufriends["friends"])):
 #    del newresult[key]
